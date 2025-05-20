@@ -1,0 +1,25 @@
+{
+  "id": "11",
+  "server": {
+    "host": "smtp.163.com",
+    "port": 465
+  },
+  "auth": {
+    "user": "19338024598@163.com",
+    "pass": "MWTUBy3ZhNXMt9FJ"
+  },
+  "from": {
+    "name": "send",
+    "addr": "19338024598@163.com"
+  },
+  "to": [
+    {
+      "name": "accept",
+      "addr": "3299601781@qq.com"
+    }
+  ],
+  "content_type": "text/plain; charset=utf-8",
+  "encoding": "base64",
+  "subject": "测试邮件",
+  "body": "test"
+}

@@ -1,0 +1,16 @@
+
+### 邮件确认（成功）
+POST {{addr}}/c/email/111111/verify
+Content-Type: application/json
+
+### 邮件确认（失败）
+POST {{addr}}/c/email/111112/verify
+Content-Type: application/json
+
+### 邮件确认（未返回状态）
+POST {{addr}}/c/email/vp0r-siow-jc8j-bvq7/verify
+Content-Type: application/json
+
+### 测试接口
+POST {{addr}}/c/users/login
+Content-Type: application/json

@@ -1,0 +1,40 @@
+### 健康检查
+POST {{addr}}/a/h
+
+### 邮件获取
+POST {{addr}}/a/m
+Content-Type: application/json
+
+{}
+
+### 邮件确认（成功）
+POST {{addr}}/a/v
+Content-Type: application/json
+
+{
+  "id": "111111",
+  "success": true
+}
+
+### 邮件确认（失败）
+POST {{addr}}/a/v
+Content-Type: application/json
+
+{
+  "id": "111112",
+  "success": false
+}
+
+
+### 接收邮件探针信息
+POST {{addr}}/a/p
+Content-Type: application/json
+
+{
+  "host": "1",
+  "refer": "1",
+  "index": "1111",
+  "ua": "1",
+  "proxy-ip": "1",
+  "real-ip": "1"
+}

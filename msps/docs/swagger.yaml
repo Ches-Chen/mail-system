@@ -1,0 +1,228 @@
+basePath: /
+definitions:
+  common.Response:
+    properties:
+      msg:
+        description: 请求结果描述
+        type: string
+      payload:
+        description: 请求结果数据
+      success:
+        description: 是否请求成功
+        type: boolean
+    type: object
+  domain.EmailVerifyReq:
+    properties:
+      id:
+        description: 邮件唯一标识
+        type: string
+      success:
+        description: 邮件发送是否成功
+        type: boolean
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: msps
+  title: msps
+  version: latest
+paths:
+  /a/h:
+    post:
+      consumes:
+      - application/json
+      description: 处理来自Agent的心跳请求
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"msg":"","data":null}'
+          schema:
+            $ref: '#/definitions/common.Response'
+        "400":
+          description: '{"success":false,"msg":"请求参数错误","data":null}'
+          schema:
+            $ref: '#/definitions/common.Response'
+        "401":
+          description: '{"success":false,"msg":"用户未登录","data":null}'
+          schema:
+            $ref: '#/definitions/common.Response'
+        "403":
+          description: '{"success":false,"msg":"访问受限","data":null}'
+          schema:
+            $ref: '#/definitions/common.Response'
+        "404":
+          description: '{"success":false,"msg":"路径不存在","data":null}'
+          schema:
+            $ref: '#/definitions/common.Response'
+        "500":
+          description: '{"success":false,"msg":"Internal Server Error","data":null}'
+          schema:
+            $ref: '#/definitions/common.Response'
+      summary: 健康检查
+      tags:
+      - Agent
+  /a/m:
+    post:
+      consumes:
+      - application/json
+      description: 处理来自Agent的邮件获取请求
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"msg":"","data":null}'
+          schema:
+            $ref: '#/definitions/common.Response'
+        "400":
+          description: '{"success":false,"msg":"请求参数错误","data":null}'
+          schema:
+            $ref: '#/definitions/common.Response'
+        "401":
+          description: '{"success":false,"msg":"用户未登录","data":null}'
+          schema:
+            $ref: '#/definitions/common.Response'
+        "403":
+          description: '{"success":false,"msg":"访问受限","data":null}'
+          schema:
+            $ref: '#/definitions/common.Response'
+        "404":
+          description: '{"success":false,"msg":"路径不存在","data":null}'
+          schema:
+            $ref: '#/definitions/common.Response'
+        "500":
+          description: '{"success":false,"msg":"Internal Server Error","data":null}'
+          schema:
+            $ref: '#/definitions/common.Response'
+      summary: 邮件获取
+      tags:
+      - Agent
+  /a/v:
+    post:
+      consumes:
+      - application/json
+      description: 处理来自Agent的邮件结果请求
+      parameters:
+      - description: 请求参数
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/domain.EmailVerifyReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"msg":"","data":null}'
+          schema:
+            $ref: '#/definitions/common.Response'
+        "400":
+          description: '{"success":false,"msg":"请求参数错误","data":null}'
+          schema:
+            $ref: '#/definitions/common.Response'
+        "401":
+          description: '{"success":false,"msg":"用户未登录","data":null}'
+          schema:
+            $ref: '#/definitions/common.Response'
+        "403":
+          description: '{"success":false,"msg":"访问受限","data":null}'
+          schema:
+            $ref: '#/definitions/common.Response'
+        "404":
+          description: '{"success":false,"msg":"路径不存在","data":null}'
+          schema:
+            $ref: '#/definitions/common.Response'
+        "500":
+          description: '{"success":false,"msg":"Internal Server Error","data":null}'
+          schema:
+            $ref: '#/definitions/common.Response'
+      summary: 邮件发送结果接收
+      tags:
+      - Agent
+  /c/email/{id}/verify:
+    post:
+      consumes:
+      - application/json
+      description: 处理来自Client的邮件确认请求
+      parameters:
+      - description: 邮件唯一标识
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"msg":"","data":null}'
+          schema:
+            $ref: '#/definitions/common.Response'
+        "400":
+          description: '{"success":false,"msg":"请求参数错误","data":null}'
+          schema:
+            $ref: '#/definitions/common.Response'
+        "401":
+          description: '{"success":false,"msg":"用户未登录","data":null}'
+          schema:
+            $ref: '#/definitions/common.Response'
+        "403":
+          description: '{"success":false,"msg":"访问受限","data":null}'
+          schema:
+            $ref: '#/definitions/common.Response'
+        "404":
+          description: '{"success":false,"msg":"路径不存在","data":null}'
+          schema:
+            $ref: '#/definitions/common.Response'
+        "500":
+          description: '{"success":false,"msg":"Internal Server Error","data":null}'
+          schema:
+            $ref: '#/definitions/common.Response'
+      summary: 邮件发送结果确认
+      tags:
+      - Client
+  /c/email/send:
+    post:
+      consumes:
+      - multipart/form-data
+      description: 处理来自Client的邮件发送请求
+      parameters:
+      - description: 邮件请求参数，作为formData的'data'字段传递
+        in: formData
+        name: data
+        required: true
+        type: string
+      - description: 邮件附件，作为formData的'attachments'字段传递（可选）
+        in: formData
+        name: attachments
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"msg":"","data":null}'
+          schema:
+            $ref: '#/definitions/common.Response'
+        "400":
+          description: '{"success":false,"msg":"请求参数错误","data":null}'
+          schema:
+            $ref: '#/definitions/common.Response'
+        "401":
+          description: '{"success":false,"msg":"用户未登录","data":null}'
+          schema:
+            $ref: '#/definitions/common.Response'
+        "403":
+          description: '{"success":false,"msg":"访问受限","data":null}'
+          schema:
+            $ref: '#/definitions/common.Response'
+        "404":
+          description: '{"success":false,"msg":"路径不存在","data":null}'
+          schema:
+            $ref: '#/definitions/common.Response'
+        "500":
+          description: '{"success":false,"msg":"Internal Server Error","data":null}'
+          schema:
+            $ref: '#/definitions/common.Response'
+      summary: 邮件发送处理
+      tags:
+      - Client
+swagger: "2.0"

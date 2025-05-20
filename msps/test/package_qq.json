@@ -1,0 +1,25 @@
+{
+  "id": "faf0-faw2-hse2-nkia",
+  "server": {
+    "host": "smtp.qq.com",
+    "port": 465
+  },
+  "auth": {
+    "user": "3299601781@qq.com",
+    "pass": "qgkpoghrlpludabg"
+  },
+  "from": {
+    "name": "1",
+    "addr": "3299601781@qq.com"
+  },
+  "to": [
+    {
+      "name": "accept",
+      "addr": "19338024598@163.com"
+    }
+  ],
+  "content_type": "text/plain; charset=utf-8",
+  "encoding": "base64",
+  "subject": "测试邮件",
+  "body": "test"
+}
